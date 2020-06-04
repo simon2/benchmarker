@@ -1,5 +1,8 @@
 import torch
 
-precision = 'fp32'
-Net = torch.hub.load('NVIDIA/DeepLearningExamples:torchhub',
-                     'nvidia_ssd', model_math=precision)
+
+def get_kernel(params, unparsed_args):
+    precision = "fp32"
+    repo = "NVIDIA/DeepLearningExamples:torchhub"
+    Net = torch.hub.load(repo, "nvidia_ssd", model_math=precision)
+    return Net
