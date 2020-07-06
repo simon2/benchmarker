@@ -14,6 +14,7 @@ class PytorchVgg16Test(unittest.TestCase):
             "--problem_size=4",
             "--batch_size=2",
             "--nb_epoch=1",
+            "--gpus=0",
             "--mode=inference",
         ]
 
