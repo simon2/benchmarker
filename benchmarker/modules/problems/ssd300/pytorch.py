@@ -42,9 +42,9 @@ def get_kernel(params, unparsed_args=None):
     CACHE = Path("~/.cache/benchmarker/models/").expanduser()
     FNAME = "nvidia_ssdpyt_fp32_20190225.pt"
     PATH = CACHE.joinpath(FNAME)
-    REPO = Path("https://api.ngc.nvidia.com/")
-    REPO = REPO.joinpath("v2/models/nvidia/ssdpyt_fp32/versions/1/files/")
-    URL = REPO.joinpath(FNAME)
+    URL = "https://api.ngc.nvidia.com/"
+    URL += "v2/models/nvidia/ssdpyt_fp32/versions/1/files/"
+    URL += FNAME
     error_msg = "Download weights using wget {} -O {}".format(URL, PATH)
     assert PATH.exists(), error_msg
     ckpt = torch.load(PATH, map_location=lambda storage, loc: storage)
