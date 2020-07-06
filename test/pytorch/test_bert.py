@@ -1,23 +1,23 @@
 import logging
 import unittest
 
-from ..helpers import run_module
+from benchmarker.benchmarker import run
 
 logging.basicConfig(level=logging.DEBUG)
 
 
 class PytorchBertTest(unittest.TestCase):
     def setUp(self):
-        self.name = "benchmarker"
-
-    def test_bert(self):
-        run_module(
-            self.name,
+        self.args = [
             "--framework=pytorch",
             "--problem=bert",
-            "--problem_size=32,32",
-            "--batch_size=8",
-            "--mode=inference",
-            "--cnt_units=128",
-            "--cnt_heads=4",
-        )
+            "--problem_size=4,8",
+            "--batch_size=2",
+            "--nb_epoch=1",
+        ]
+
+    def test_bert_inference(self):
+        run(self.args + ["--mode=inference"])
+
+    def test_bert_training(self):
+        run(self.args + ["--mode=training"])
